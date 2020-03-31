@@ -10,6 +10,19 @@ class Algorithms:
                 num -= 1
         return params
 
+    @staticmethod
+    def selection_sort(params):
+        for index in range (1, len(params)):
+            minim = float('inf')
+            for num in range(index, len(params)):
+                if params[num] < minim:
+                    minim = params[num]
+                    swapper = num
+            params[swapper] = params[index]
+            params[index] = minim
+        return params
+
+
 
 list = [0, 3, 2, 5, 8, 1, 8, 5, 81, 21941, 214125,1251 ,2512,5,12]
-print(Algorithms.insertion_sort(list))
+print(Algorithms.selection_sort(list))
