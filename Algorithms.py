@@ -26,22 +26,45 @@ class Algorithms:
     def quick_sort(params):
         return params
 
+
     @staticmethod
+
     def merge_sort(params):
-        if len(params) <= 1:
-            return params
-        mid = len(params)/2
-        tempone = Algorithms.merge_sort(params[0:mid])
-        temptwo = Algorithms.merge_sort(params[mid:])
-
-        return Algorithms.merge(tempone, temptwo)
-
-
-
+        Algorithms.merge_sorter(params, 0, len(params))
         return params
+
     @staticmethod
-    def merge(one, two):
-        mid = (len(one) + len(two))/2
+    def merge_sorter(params, start, end):
+        if end - start <=1 :
+            return
+        mid = int((start + end) / 2)
+        Algorithms.merge_sorter(params, start, mid)
+        Algorithms.merge_sorter(params, mid, end)
+
+        Algorithms.merge(params, start, mid, end)
+
+
+
+    @staticmethod
+    def merge(params, start, mid, end):
+        final = []
+        num_one = start
+        num_two = mid
+        while num_one != mid or num_two != end:
+            if num_one == mid:
+                final.append(params[num_two])
+                num_two += 1
+            elif num_two == end:
+                final.append(params[num_one])
+                num_one += 1
+            elif params[num_one] < params[num_two]:
+                final.append(params[num_one])
+                num_one += 1
+            else:
+                final.append(params[num_two])
+                num_two += 1
+        for index in range(0, len(final)):
+            params[index+start] = final[index]
 
 
     @staticmethod
@@ -50,3 +73,5 @@ class Algorithms:
 
 
 list = [0, 3, 2, 5, 8, 1, 8, 5, 81, 21941, 214125,1251 ,2512,5,12]
+
+print(Algorithms.merge_sort(list))
