@@ -22,7 +22,31 @@ class Algorithms:
             params[index] = minim
         return params
 
+    @staticmethod
+    def quick_sort(params):
+        return params
+
+    @staticmethod
+    def merge_sort(params):
+        if len(params) <= 1:
+            return params
+        mid = len(params)/2
+        tempone = Algorithms.merge_sort(params[0:mid])
+        temptwo = Algorithms.merge_sort(params[mid:])
+
+        return Algorithms.merge(tempone, temptwo)
+
+
+
+        return params
+    @staticmethod
+    def merge(one, two):
+        mid = (len(one) + len(two))/2
+
+
+    @staticmethod
+    def heap_sort(params):
+        return 0
 
 
 list = [0, 3, 2, 5, 8, 1, 8, 5, 81, 21941, 214125,1251 ,2512,5,12]
-print(Algorithms.selection_sort(list))
