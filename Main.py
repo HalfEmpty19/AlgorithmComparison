@@ -10,18 +10,23 @@ class SortingProcesses:
         pass
 
     def processes(self):
-        list = SortingProcesses.ArrayGenerator(5000)
-        insertion_sorter = Process(target=Sorts.insertion_sort, args=(list,))
-        selection_sorter = Process(target=Sorts.selection_sort, args=(list,))
+        num_array = SortingProcesses.array_generator()
+        insertion_sorter = Process(target=Sorts.insertion_sort, args=(num_array,))
+        selection_sorter = Process(target=Sorts.selection_sort, args=(num_array,))
+        merge_sorter = Process(target=Sorts.merge_sort, args=(num_array,))
+        quick_sorter = Process(target=Sorts.quick_sort, args=(num_array,))
         insertion_sorter.start()
         selection_sorter.start()
+        merge_sorter.start()
+        quick_sorter.start()
+
 
     @staticmethod
-    def ArrayGenerator(size):
-        list = []
+    def array_generator(size):
+        num_array = []
         for index in range(0, size):
-            list.append(random.randint(0, 2147483647-1))
-        return list
+            num_array.append(random.randint(0, 2147483647-1))
+        return num_array
 
 
 test = SortingProcesses()
