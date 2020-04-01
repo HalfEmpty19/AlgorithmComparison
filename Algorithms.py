@@ -1,10 +1,10 @@
-class Algorithms:
+class Sorts:
     @staticmethod
     def insertion_sort(params):
         for index in range(1, len(params)):
             num = index
             while num >= 1 and params[num] < params[num-1]:
-                Algorithms.swap(params, num-1,num)
+                Sorts.swap(params, num - 1, num)
                 num -= 1
         return params
 
@@ -16,19 +16,19 @@ class Algorithms:
             for num in range(index, len(params)):
                 if params[num] < minim:
                     swapper = num
-            Algorithms.swap(params, swapper, index)
+            Sorts.swap(params, swapper, index)
         return params
 
     @staticmethod
     def quick_sort(params):
-        Algorithms.quick_sorter(params, 0, len(params)-1)
+        Sorts.quick_sorter(params, 0, len(params) - 1)
         return params
 
 
 
     @staticmethod
     def merge_sort(params):
-        Algorithms.merge_sorter(params, 0, len(params))
+        Sorts.merge_sorter(params, 0, len(params))
         return params
 
 
@@ -42,11 +42,11 @@ class Algorithms:
     def quick_sorter(params, start, end):
         if start < end:
 
-            part = Algorithms.partition(params, start, end)
+            part = Sorts.partition(params, start, end)
 
-            Algorithms.quick_sorter(params, start, part - 1)
+            Sorts.quick_sorter(params, start, part - 1)
 
-            Algorithms.quick_sorter(params, part + 1, end)
+            Sorts.quick_sorter(params, part + 1, end)
 
     @staticmethod
     def partition(params, start, end):
@@ -55,9 +55,9 @@ class Algorithms:
         for indexer in range(start, end):
             if params[indexer] < piv:
                 checker += 1
-                Algorithms.swap(params, indexer, checker)
+                Sorts.swap(params, indexer, checker)
 
-        Algorithms.swap(params, checker+1, end)
+        Sorts.swap(params, checker + 1, end)
         return checker+1
 
     @staticmethod
@@ -65,10 +65,10 @@ class Algorithms:
         if end - start <= 1:
             return
         mid = int((start + end) / 2)
-        Algorithms.merge_sorter(params, start, mid)
-        Algorithms.merge_sorter(params, mid, end)
+        Sorts.merge_sorter(params, start, mid)
+        Sorts.merge_sorter(params, mid, end)
 
-        Algorithms.merge(params, start, mid, end)
+        Sorts.merge(params, start, mid, end)
 
 
 
@@ -103,6 +103,4 @@ class Algorithms:
         params[one] = params[two]
         params[two] = temp
 
-list = [18, 3, 2, 5, 8, 1, 8, 5, 81, 21941, 214125,1251 ,2512,5,0]
 
-print(Algorithms.quick_sort(list))
