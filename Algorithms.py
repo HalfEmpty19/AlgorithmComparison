@@ -4,9 +4,7 @@ class Algorithms:
         for index in range(1, len(params)):
             num = index
             while num >= 1 and params[num] < params[num-1]:
-                temp = params[num]
-                params[num] = params[num-1]
-                params[num-1] = temp
+                Algorithms.swap(params, num-1,num)
                 num -= 1
         return params
 
@@ -14,28 +12,57 @@ class Algorithms:
     def selection_sort(params):
         for index in range (1, len(params)):
             minim = float('inf')
+            swapper = index
             for num in range(index, len(params)):
                 if params[num] < minim:
-                    minim = params[num]
                     swapper = num
-            params[swapper] = params[index]
-            params[index] = minim
+            Algorithms.swap(params, swapper, index)
         return params
 
     @staticmethod
     def quick_sort(params):
+        Algorithms.quick_sorter(params, 0, len(params)-1)
         return params
 
 
-    @staticmethod
 
+    @staticmethod
     def merge_sort(params):
         Algorithms.merge_sorter(params, 0, len(params))
         return params
 
+
+
+
+
+
+
+
+    @staticmethod
+    def quick_sorter(params, start, end):
+        if start < end:
+
+            part = Algorithms.partition(params, start, end)
+
+            Algorithms.quick_sorter(params, start, part - 1)
+
+            Algorithms.quick_sorter(params, part + 1, end)
+
+    @staticmethod
+    def partition(params, start, end):
+        piv = params[end]
+        checker = start-1
+        for indexer in range(start, end):
+            if params[indexer] < piv:
+                checker += 1
+                Algorithms.swap(params, indexer, checker)
+
+        Algorithms.swap(params, checker+1, end)
+        return checker+1
+
     @staticmethod
     def merge_sorter(params, start, end):
-        if end - start <=1 :
+        if end - start <= 1:
             return
         mid = int((start + end) / 2)
         Algorithms.merge_sorter(params, start, mid)
@@ -66,12 +93,16 @@ class Algorithms:
         for index in range(0, len(final)):
             params[index+start] = final[index]
 
-
     @staticmethod
     def heap_sort(params):
         return 0
 
+    @staticmethod
+    def swap(params, one, two):
+        temp = params[one]
+        params[one] = params[two]
+        params[two] = temp
 
-list = [0, 3, 2, 5, 8, 1, 8, 5, 81, 21941, 214125,1251 ,2512,5,12]
+list = [18, 3, 2, 5, 8, 1, 8, 5, 81, 21941, 214125,1251 ,2512,5,0]
 
-print(Algorithms.merge_sort(list))
+print(Algorithms.quick_sort(list))
