@@ -23,4 +23,5 @@ class SelectionSorter(Process):
                     swapper = num
             Sorts.swap(params, swapper, index)
             self.num_sorted += 1
+
         return params

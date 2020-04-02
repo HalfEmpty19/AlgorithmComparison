@@ -1,5 +1,6 @@
 from multiprocessing import Process
 
+
 class MergeSorter(Process):
     num_sorted = 0
     num_array = []
@@ -17,6 +18,7 @@ class MergeSorter(Process):
         return params
 
 
+
     def merge_sorter(self, params, start, end):
         if end - start <= 1:
             return
@@ -30,6 +32,7 @@ class MergeSorter(Process):
 
 
     def merge(self, params, start, mid, end):
+        self.num_sorted+=1
         final = []
         num_one = start
         num_two = mid
@@ -47,5 +50,6 @@ class MergeSorter(Process):
                 final.append(params[num_two])
                 num_two += 1
         for index in range(0, len(final)):
-            self.num_sorted += 1
             params[index+start] = final[index]
+
+
