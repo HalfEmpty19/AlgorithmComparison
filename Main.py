@@ -1,7 +1,7 @@
 import random
 from multiprocessing import Process
 from InsertionSortProcess import InsertionSorter
-
+from SelectionSortProcess import SelectionSorter
 from Algorithms import Sorts
 
 
@@ -13,6 +13,8 @@ class SortingProcesses:
     def processes(self):
         num_array = SortingProcesses.array_generator(50)
         insertion_sorter = InsertionSorter(num_array)
+        selection_sorter = SelectionSorter(num_array)
+        selection_sorter.start()
         insertion_sorter.start()
 
 
