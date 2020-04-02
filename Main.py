@@ -3,7 +3,7 @@ from multiprocessing import Process
 from InsertionSortProcess import InsertionSorter
 from SelectionSortProcess import SelectionSorter
 from MergeSortProcess import MergeSorter
-from Algorithms import Sorts
+from QuickSortProcess import QuickSorter
 
 
 class SortingProcesses:
@@ -12,13 +12,15 @@ class SortingProcesses:
         pass
 
     def processes(self):
-        num_array = SortingProcesses.array_generator(42)
+        num_array = SortingProcesses.array_generator(5)
         insertion_sorter = InsertionSorter(num_array)
         selection_sorter = SelectionSorter(num_array)
         merge_sorter = MergeSorter(num_array)
+        quick_sorter = QuickSorter(num_array)
         selection_sorter.start()
         insertion_sorter.start()
         merge_sorter.start()
+        quick_sorter.start()
 
 
 

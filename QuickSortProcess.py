@@ -12,6 +12,7 @@ class QuickSorter(Process):
     def run(self):
         self.quick_sort(self.num_array)
 
+
     def quick_sort(self, params):
         self.quick_sorter(params, 0, len(params) - 1)
 
@@ -24,14 +25,14 @@ class QuickSorter(Process):
             self.quick_sorter(params, part + 1, end)
 
     def partition(self, params, start, end):
-        self.num_sorted+=1
-        print(self.num_sorted)
         piv = params[end]
         checker = start - 1
         for indexer in range(start, end):
             if params[indexer] < piv:
+
                 checker += 1
                 Sorts.swap(params, indexer, checker)
 
         Sorts.swap(params, checker + 1, end)
+
         return checker + 1

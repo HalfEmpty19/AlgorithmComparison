@@ -13,6 +13,7 @@ class InsertionSorter(Process):
     def run(self):
         self.insertion_sort(self.num_array)
 
+
     def insertion_sort(self, params):
         for index in range(1, len(params)):
             num = index
