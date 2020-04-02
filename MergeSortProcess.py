@@ -32,7 +32,7 @@ class MergeSorter(Process):
 
 
     def merge(self, params, start, mid, end):
-        self.num_sorted+=1
+        self.num_sorted += 1
         final = []
         num_one = start
         num_two = mid
