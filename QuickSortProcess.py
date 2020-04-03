@@ -26,6 +26,7 @@ class QuickSorter(Process):
 
     def partition(self, params, start, end):
         piv = params[end]
+
         checker = start - 1
         for indexer in range(start, end):
             if params[indexer] < piv:

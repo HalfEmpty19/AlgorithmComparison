@@ -2,6 +2,8 @@ from multiprocessing import Process
 
 
 class MergeSorter(Process):
+    hashed = {}
+    been_sorted = []
     num_sorted = 0
     num_array = []
 
@@ -32,6 +34,10 @@ class MergeSorter(Process):
 
 
     def merge(self, params, start, mid, end):
+        if params[start:mid] in self.been_sorted:
+            self.been_sorted.remove(params[start:mid])
+        if params[mid:end] in self.been_sorted:
+            self.been_sorted.remove(params[mid:end])
         self.num_sorted += 1
         final = []
         num_one = start
@@ -50,6 +56,8 @@ class MergeSorter(Process):
                 final.append(params[num_two])
                 num_two += 1
         for index in range(0, len(final)):
-            params[index+start] = final[index]
+            to_swap = final[index]
+            params[index+start] = to_swap
+        self.been_sorted.append(final)
 
 
